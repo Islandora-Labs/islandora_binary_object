@@ -316,7 +316,7 @@ function islandora_binary_object_admin_submit($form, &$form_state) {
     $table_element = $form_state['triggering_element']['#parents'][0];
     $association_id = $form[$table_element]['association_id']['#value'];
     $file_id = $form[$table_element]['fid']['#value'];
-    $form_state['redirect'] = "admin/islandora/binary-object/delete-association/$association_id/$file_id";
+    $form_state['redirect'] = "admin/islandora/binary-object-storage/delete-association/$association_id/$file_id";
   }
 }
 
