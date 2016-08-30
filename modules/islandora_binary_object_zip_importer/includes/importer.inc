@@ -79,7 +79,7 @@ class BinaryObjectZipBatchImporter extends ZipBatchImporter {
    * @see IslandoraBatchImporterInterface::getBatchInfo()
    */
   public static function getBatchInfo(array &$form_state) {
-    $file = $form_state['values']['file'];
+    $file = is_object($form_state['values']['file']) ? $form_state['values']['file'] : file_load($form_state['values']['file']);
     return array(
       'file' => $file,
       'pid_namespace' => $form_state['values']['namespace'],
