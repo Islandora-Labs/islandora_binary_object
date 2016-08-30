@@ -145,7 +145,7 @@ class BinaryObjectZipBatchImportObject extends ZipBatchImportObject {
    * @see IslandoraImportObject::getDatastreams()
    */
   protected function getDatastreams(&$errors = NULL, &$files = NULL) {
-    $to_return = parent::getDatastreams($errors, $files);
+    $to_return = array();
     $default_scheme = file_default_scheme() . "://";
     module_load_include('inc', 'islandora', 'includes/utilities');
 
@@ -185,6 +185,7 @@ class BinaryObjectZipBatchImportObject extends ZipBatchImportObject {
       $zip->open(drupal_realpath($this->source['file']->uri));
       if ($stream = $zip->getStream($name)) {
         $path = $default_scheme . basename($name);
+        file_unmanaged_save_data($stream, $path);
         $file = islandora_temp_file_entry($path, $mimetype);
         $files[] = $file;
 
@@ -208,6 +209,30 @@ class BinaryObjectZipBatchImportObject extends ZipBatchImportObject {
       $datastream['label'] = $this->getLabel($datastream['dsid'], $datastream);
     }
 
+    // See if the user uploaded DC, if not create it now.
+    if (!isset($to_return['DC'])) {
+      $obtained_dc = $this->getDC();
+      if ($obtained_dc) {
+        $name = file_create_filename('DC record.xml', 'public://');
+        file_unmanaged_save_data($obtained_dc, $name);
+        $dc_file = islandora_temp_file_entry($name, 'application/xml');
+        $files[] = $dc_file;
+        $to_return['DC'] = array(
+          'dsid' => 'DC',
+          'label' => 'DC Record',
+          'mimetype' => 'application/xml',
+          'control_group' => 'X',
+          'datastream_file' => file_create_url($dc_file->uri),
+          'file' => $dc_file,
+        );
+      }
+      else {
+        $errors[] = array(
+          t('Failed to produce DC record for @pid.'),
+        );
+      }
+    }
     return $to_return;
   }
+
 }
