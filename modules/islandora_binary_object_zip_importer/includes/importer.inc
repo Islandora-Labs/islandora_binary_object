@@ -215,9 +215,6 @@ class BinaryObjectZipBatchImportObject extends ZipBatchImportObject {
         $uri = file_unmanaged_save_data($obtained_dc, $default_scheme . basename($name));
         $dc_file = islandora_temp_file_entry($uri, 'application/xml');
         $files[] = $dc_file;
-        dsm($obtained_dc);
-        dsm($uri);
-        dsm($this->getDC());
         $to_return['DC'] = array(
           'dsid' => 'DC',
           'label' => 'DC Record',
