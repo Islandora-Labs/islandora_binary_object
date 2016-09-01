@@ -210,10 +210,10 @@ class BinaryObjectZipBatchImportObject extends ZipBatchImportObject {
 
     // See if the user uploaded DC, if not create it now.
     if (!isset($to_return['DC'])) {
-      $obtained_dc = $this->getDC();
+      $obtained_dc = $this->getDC($name);
       if ($obtained_dc) {
-        file_unmanaged_save_data($obtained_dc, 'public://DC record.xml');
-        $dc_file = islandora_temp_file_entry('public://DC record.xml', 'application/xml');
+        $uri = file_unmanaged_save_data($obtained_dc, $default_scheme . basename($name));
+        $dc_file = islandora_temp_file_entry($uri, 'application/xml');
         $files[] = $dc_file;
         $to_return['DC'] = array(
           'dsid' => 'DC',
