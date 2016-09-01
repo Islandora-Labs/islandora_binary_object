@@ -184,9 +184,8 @@ class BinaryObjectZipBatchImportObject extends ZipBatchImportObject {
       $zip = new ZipArchive();
       $zip->open(drupal_realpath($this->source['file']->uri));
       if ($stream = $zip->getStream($name)) {
-        $path = $default_scheme . basename($name);
-        file_unmanaged_save_data($stream, $path);
-        $file = islandora_temp_file_entry($path, $mimetype);
+        $uri = file_unmanaged_save_data($stream, $default_scheme . basename($name));
+        $file = islandora_temp_file_entry($uri, $mimetype);
         $files[] = $file;
 
         $to_return += array(
@@ -213,9 +212,8 @@ class BinaryObjectZipBatchImportObject extends ZipBatchImportObject {
     if (!isset($to_return['DC'])) {
       $obtained_dc = $this->getDC();
       if ($obtained_dc) {
-        $name = file_create_filename('DC record.xml', 'public://');
-        file_unmanaged_save_data($obtained_dc, $name);
-        $dc_file = islandora_temp_file_entry($name, 'application/xml');
+        file_unmanaged_save_data($obtained_dc, 'public://DC record.xml');
+        $dc_file = islandora_temp_file_entry('public://DC record.xml', 'application/xml');
         $files[] = $dc_file;
         $to_return['DC'] = array(
           'dsid' => 'DC',
