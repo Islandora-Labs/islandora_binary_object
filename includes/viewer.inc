@@ -5,6 +5,8 @@ function islandora_binary_object_get_viewer($object, $mimetype) {
   module_load_include('inc', 'islandora', 'includes/solution_packs');
   if ($mimetype == 'text/csv') {
     $params = array();
+    $params['url'] = url("islandora/object/{$object->id}/datastream/OBJ/view", array('absolute' => TRUE));
+
     return islandora_get_viewer($params, 'islandora_binary_csv_viewers', $object);
   }
   if ($mimetype == 'application/zip') {
