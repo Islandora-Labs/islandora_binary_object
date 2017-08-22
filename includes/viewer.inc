@@ -12,7 +12,7 @@ function islandora_binary_object_get_viewer($object, $mimetype) {
   }
   if ($mimetype == 'application/zip') {
     $params = array();
-    $params['url'] = url("islandora/object/{$object->id}/datastream/OBJ/view", array('absolute' => TRUE));
+    $params['dsid'] = 'OBJ';
 
     return islandora_get_viewer($params, 'islandora_binary_zip_viewers', $object);
   }
