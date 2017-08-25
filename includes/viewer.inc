@@ -32,5 +32,5 @@ function islandora_binary_object_get_viewer(AbstractObject $object, $mimetype) {
 
     return islandora_get_viewer($params, 'islandora_binary_zip_viewers', $object);
   }
-  return null;
+  return NULL;
 }

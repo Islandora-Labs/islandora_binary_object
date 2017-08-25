@@ -33,7 +33,7 @@ function template_preprocess_islandora_binary_object(array &$variables) {
 
     // Viewer.
     $viewer = islandora_binary_object_get_viewer($islandora_object, $islandora_object['OBJ']->mimetype);
-    if ($viewer != null) {
+    if ($viewer != NULL) {
       $variables['islandora_viewer'] = $viewer;
     }
   }
