@@ -5,7 +5,6 @@
  * Holds the viewer callbacks.
  */
 
-
 /**
  * Selects and calls viewers
  *
