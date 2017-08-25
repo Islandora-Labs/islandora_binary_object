@@ -19,7 +19,7 @@
 function islandora_binary_object_admin(array $form, array &$form_state) {
   module_load_include('inc', 'islandora', 'includes/utilities');
   module_load_include('inc', 'islandora', 'includes/solution_packs');
-  
+
   $form += islandora_viewers_form('islandora_binary_csv_viewers', 'text/csv');
   $form['csv_viewers'] = $form['viewers'];
   $form['csv_viewers']['#title'] = t('CSV Viewers');
@@ -29,7 +29,6 @@ function islandora_binary_object_admin(array $form, array &$form_state) {
   $form['zip_viewers']['#title'] = t('ZIP Viewers');
   unset($form['viewers']);
 
-  
   return system_settings_form($form);
 }
- 
+

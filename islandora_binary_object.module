@@ -30,15 +30,14 @@ function islandora_binary_object_menu() {
     'file' => 'includes/admin.inc',
   );
   $items['admin/islandora/solution_pack_config/binary_object_collection'] = array(
-      'title' => 'Binary Solution Pack',
-      'description' => 'Configure viewers for binary objects.',
-      'page callback' => 'drupal_get_form',
-      'access arguments' => array('administer site configuration'),
-      'page arguments' => array('islandora_binary_object_admin'),
-      'file' => 'includes/admin.form.inc',
-      'type' => MENU_NORMAL_ITEM,
-    );
-
+    'title' => 'Binary Solution Pack',
+    'description' => 'Configure viewers for binary objects.',
+    'page callback' => 'drupal_get_form',
+    'access arguments' => array('administer site configuration'),
+    'page arguments' => array('islandora_binary_object_admin'),
+    'file' => 'includes/admin.form.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
   return $items;
 }
 /**
