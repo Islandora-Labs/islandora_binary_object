@@ -23,7 +23,11 @@
     <?php if (isset($islandora_binary_object_info)): ?>
       <?php print $islandora_binary_object_info; ?>
     <?php endif; ?>
-    <?php if (isset($islandora_thumbnail_img)): ?>
+    <?php if (isset($islandora_viewer)): ?>
+      <div class="islandora-binary-object-viewer">
+        <?php print $islandora_viewer; ?>
+      </div>
+    <?php elseif (isset($islandora_thumbnail_img)): ?>
       <div class="islandora-binary-object-content">
         <?php print $islandora_thumbnail_img; ?>
       </div>

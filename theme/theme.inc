@@ -9,6 +9,7 @@
  */
 function template_preprocess_islandora_binary_object(array &$variables) {
   module_load_include('inc', 'islandora', 'includes/metadata');
+  module_load_include('inc', 'islandora_binary_object', 'includes/viewer');
   drupal_add_js('misc/form.js');
   drupal_add_js('misc/collapse.js');
 
@@ -29,6 +30,12 @@ function template_preprocess_islandora_binary_object(array &$variables) {
       '#markup' => l(t('@label', array('@label' => $islandora_object['OBJ']->label)), "islandora/object/$islandora_object->id/datastream/OBJ/download"),
     );
     $variables['islandora_binary_object_download'] = drupal_render($display['download']);
+
+    // Viewer.
+    $viewer = islandora_binary_object_get_viewer($islandora_object, $islandora_object['OBJ']->mimetype);
+    if ($viewer != NULL) {
+      $variables['islandora_viewer'] = $viewer;
+    }
   }
 
   // Thumbnail.
