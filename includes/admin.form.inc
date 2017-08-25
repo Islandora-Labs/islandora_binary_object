@@ -31,4 +31,3 @@ function islandora_binary_object_admin(array $form, array &$form_state) {
 
   return system_settings_form($form);
 }
-

@@ -6,7 +6,7 @@
  */
 
 /**
- * Selects and calls viewers
+ * Selects and calls viewers.
  *
  * @param AbstractObject $object
  *   The object the viewer will display
@@ -34,4 +34,3 @@ function islandora_binary_object_get_viewer(AbstractObject $object, $mimetype) {
   }
   return null;
 }
-
