@@ -30,7 +30,7 @@ function islandora_binary_object_upload_form(array $form, array &$form_state) {
       '#upload_location' => 'temporary://',
       '#upload_validators' => array(
         // Assume its specified in MB.
-        'file_validate_extensions' => array(),
+        'file_validate_extensions' => array(NULL),
         'file_validate_size' => array($upload_size * 1024 * 1024),
       ),
     ),
